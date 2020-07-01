@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="CintelinkApp.Views.LoginPage">
+    <ContentPage.Content>
+        <RelativeLayout HorizontalOptions="FillAndExpand"
+                     VerticalOptions="FillAndExpand">
+            <Image Source="background_login.jpg"
+                   Aspect="AspectFill"
+                   RelativeLayout.WidthConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Width}"
+                   RelativeLayout.HeightConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Height}"/>
+            
+            <StackLayout RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
+                         RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Y, Factor=0, Constant=100}"
+                         Margin="30">
+                
+                <Image Source="logo_img.png"
+                       VerticalOptions="Start"
+                       Margin="0,0,0,50"/>
+
+                <Frame HasShadow="True"
+                   BackgroundColor="White"
+                   Margin="0"
+                   CornerRadius="15"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="EndAndExpand"
+                       Visual="Default">
+                    <StackLayout Orientation="Vertical">
+                        <StackLayout Orientation="Vertical"
+                                     IsVisible="{Binding loginIsVisible}">
+                            <Label Text="Bienvenido/a" 
+                           HorizontalTextAlignment="Center"
+                           FontAttributes="Bold"
+                           FontSize="Large"
+                           Margin="0,0,0,10"/>
+                            <Entry Placeholder="Nombre de usuario" Text="{Binding userEntry}"/>
+                            <Entry Placeholder="Contraseña" Text="{Binding passEntry}"
+                               IsPassword="True"/>
+                            <Label Text="¿Olvidó su contraseña?"
+                               HorizontalTextAlignment="Center"
+                               Margin="0,10"
+                               TextDecorations="Underline"/>
+                            <Button Text="Ingresar" Command="{Binding LoginCommand}"
+                                BackgroundColor="DodgerBlue"
+                                TextColor="White"
+                                Visual="Material"/>
+                        </StackLayout>
+                        <StackLayout  IsVisible="{Binding IsBusy}">
+                            <ActivityIndicator IsVisible="{Binding IsBusy}"
+                                           IsRunning="{Binding IsBusy}"
+                                           HorizontalOptions="CenterAndExpand"
+                                           VerticalOptions="CenterAndExpand"/>
+                            <Label Text="Cargando" 
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"
+                                   HorizontalTextAlignment="Center"/>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </RelativeLayout>
+    </ContentPage.Content>
+</ContentPage>

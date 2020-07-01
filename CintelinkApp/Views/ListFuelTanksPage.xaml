@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="CintelinkApp.Views.ListFuelTanksPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView ItemsSource="{Binding ListFuelTanks}"
+                      HasUnevenRows="True"
+                      SeparatorVisibility="None"
+                      SelectedItem="{Binding FuelTanksIsSeleted, Mode=TwoWay}"
+                      IsVisible="{Binding IsVisibleList}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame HasShadow="True"
+                                   Margin="10,10,10,0"
+                                   BackgroundColor="#1976D2"
+                                   CornerRadius="10">
+                                <StackLayout Orientation="Vertical">
+                                    <Frame CornerRadius="10"
+                                           HorizontalOptions="Center"
+                                           Padding="20,10">
+                                        <Label Text="{Binding Description}"
+                                               FontSize="Medium"
+                                               FontAttributes="Bold"/>
+                                    </Frame>
+                                    <Label Text="{Binding ProductName}" 
+                                           TextColor="White"
+                                           HorizontalTextAlignment="Center" Margin="10"
+                                           FontSize="Medium"/>
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                                        <Label Text="{Binding Last_Quantity, StringFormat='Ult. Cant: {0} | '}" TextColor="White" HorizontalTextAlignment="Start"/>
+                                        <Label Text="{Binding Capacity, StringFormat='{0} | '}" TextColor="White"  HorizontalTextAlignment="Center"/>
+                                        <Label Text="{Binding Last_Date}" TextColor="White" HorizontalTextAlignment="End"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <StackLayout HorizontalOptions="CenterAndExpand"
+                         VerticalOptions="CenterAndExpand"
+                         IsVisible="{Binding IsBusy}">
+                <ActivityIndicator IsVisible="{Binding IsBusy}"
+                                   IsRunning="{Binding IsBusy}"/>
+                <Label Text="Cargando..."
+                       HorizontalTextAlignment="Center"
+                       HorizontalOptions="CenterAndExpand"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
